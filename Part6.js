@@ -11,6 +11,7 @@
     roll(mod = 0) {
       const result = Math.floor(Math.random() * 20) + 1 + mod;
       console.log(`${this.name} rolled a ${result}.`);
+      return result;
     }
   
     static MAX_HEALTH = 100;
@@ -49,14 +50,40 @@
         super.roll();
       }
 
-      duel(adventurer_name){
+      duel(name1){
 
-        adventurer1Roll = adventurer_name.roll();
-        adventurer2Roll = this.roll();
 
-        
+
+        while (this.health > 50 && name1.health > 50) {
+
+            const adventurer1Roll = name1.roll();
+            const adventurer2Roll = this.roll();
+            
+        if(adventurer1Roll > adventurer2Roll)
+        {
+            name1.health --;
+            console.log(`${name1.name} wins this round.. ${this.name} looses a point` )
+
+        }
+        else if(adventurer2Roll > adventurer1Roll)
+        {
+            this.health --;
+            console.log(`${this.name} wins this round.. ${name1.name} looses a point` )
+
+        }
+        else{
+        console.log(`Its a tie for health points`)
+        }
+    }
+        if (this.health > 50) {
+            console.log(`${this.name} wins the duel with ${this.health} health remaining!`);
+          } else {
+            console.log(`${name1.name} wins the duel with ${name1.health} health remaining!`);
+          }
 
       }
+
+      
     }
   
     class AdventurerFactory {  
@@ -84,13 +111,10 @@
       }
     }
     
-    // const healers = new AdventurerFactory("Healer");
-    // const robin = healers.generate("Robin");
-    
-    // healers.generate("Sinchana");
-    
-    // console.log(healers.findByIndex(0));
-    // console.log(healers.findByName("Sinchana"));
-    // console.log(healers.listAllAdventurers());
-    
-  
+    const healer1 = new AdventurerFactory("Healer");
+    const robin = healer1.generate("Robin");
+
+    const fighter1 = new AdventurerFactory("Fighter")
+    const john = fighter1.generate("John")
+
+    robin.duel(john)
