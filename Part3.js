@@ -77,3 +77,5 @@ robin.setupTent();
 robin.explore(); 
 
 robin.companion.doPlayOutside();
+
+robin.companion.companion.doPlayOutside();

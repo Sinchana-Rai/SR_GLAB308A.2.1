@@ -49,5 +49,6 @@ class Character {
   
   const adventurer1 = new Adventurer("John", "Healer");
 
-   new Adventurer("John", "ABCD");
+   const adventurer2 = new Adventurer("John", "ABCD");
+   console.log(adventurer2);
   
